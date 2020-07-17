@@ -3,7 +3,7 @@ certifi==2020.6.20
 cffi==1.14.0
 cryptography==2.9.2
 Django==3.0.7
-idna @ file:///tmp/build/80754af9/idna_1593446292537/work
+#idna @ file:///tmp/build/80754af9/idna_1593446292537/work
 importlib-metadata==1.7.0
 Markdown==3.2.2
 mysqlclient==1.4.6
