@@ -18,12 +18,14 @@ from django.urls import path,include
 from django.conf import settings
 from django.views.static import serve
 from django.conf.urls import url
+from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('blog.urls',namespace='blog')),
-    path('',include('comments.urls')),url(r'^static/(?P<path>.*)$',serve,{'document_root': settings.STATIC_ROOT}),
+    path('', include('blog.urls',namespace='blog')),
+    path('', include('comments.urls',namespace='comment')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
 
 
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

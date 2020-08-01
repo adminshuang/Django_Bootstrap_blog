@@ -3,6 +3,8 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 from django.urls import reverse
+from tinymce.models import HTMLField
+
 
 class Category(models.Model):
     """
@@ -37,18 +39,13 @@ class Post(models.Model):
     """
 
     # 文章标题
-    title = models.CharField(max_length=70)
-
-    # 文章正文，我们使用了 TextField。
-    # 存储比较短的字符串可以使用 CharField，但对于文章的正文来说可能会是一大段文本，因此使用 TextField 来存储大段文本。
-    body = models.TextField()
+    title = models.CharField(max_length=255)
+    image = models.ImageField("图片", upload_to="upload", default="upload/21.jpg")
+    body = HTMLField(verbose_name='文章详情')
 
     # 这两个列分别表示文章的创建时间和最后一次修改时间，存储时间的字段用 DateTimeField 类型。
     created_time = models.DateTimeField()
-    class Meta:
-        verbose_name='文章'
-        verbose_name_plural=verbose_name
-        ordering =['-created_time']
+
     modified_time = models.DateTimeField()
 
     # 文章摘要，可以没有文章摘要，但默认情况下 CharField 要求我们必须存入数据，否则就会报错。
@@ -70,6 +67,11 @@ class Post(models.Model):
     # 这里我们通过 ForeignKey 把文章和 User 关联了起来。
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
     author = models.ForeignKey(User,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name='文章'
+        verbose_name_plural=verbose_name
+        ordering =['-created_time']
 
 
     def __str__(self):

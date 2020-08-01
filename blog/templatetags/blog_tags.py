@@ -9,6 +9,7 @@ def get_recent_posts(num=5):
     return {
         'recent_post_list': Post.objects.all().order_by('-created_time')[:num],
     }
+
 @register.inclusion_tag('blog/inclusion/_archives.html')
 def archives():
     return {

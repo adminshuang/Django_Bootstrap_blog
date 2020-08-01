@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'l!k!@ir0z!eq5!ax=)&vq8@*m48u)@oi9@#$m(dxr)4-7i9opm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1','localhost','.140.143.26.202']
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog.apps.BlogConfig',
     'comments.apps.CommentsConfig',
+    'tinymce',
 ]
 
 MIDDLEWARE = [
@@ -124,9 +125,19 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
+STATICFILES_DIRS = (
+        os.path.join(BASE_DIR,'static/'),
+)
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
-STATICFILES_DIRS = (
-        os.path.join(BASE_DIR,'blog/static/'),
-)
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static', 'media').replace('\\', '/')
+MEDIA_URL = "/media/"
+
+
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}
+

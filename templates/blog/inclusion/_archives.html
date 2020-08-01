@@ -1,6 +1,6 @@
-<div class="widget widget-archives">
-  <h3 class="widget-title">归档</h3>
-  <ul>
+<div class="p-4">
+  <h5 class="my-4">归档</h5>
+  <ul style="min-height: 150px">
     {% for date in date_list %}
       <li>
         <a href="{% url 'blog:archive' date.year date.month %}">{{ date.year }} 年 {{ date.month }} 月</a>

@@ -1,6 +1,6 @@
-<div class="widget widget-category">
-  <h3 class="widget-title">分类</h3>
-  <ul>
+<div class="p-4">
+  <h5 class="my-4">分类</h5>
+  <ul style="min-height: 150px">
     {% for category in category_list %}
       <li>
         <a href="{% url 'blog:category' category.pk %}">{{ category.name }} <span class="post-count">(13)</span></a>
